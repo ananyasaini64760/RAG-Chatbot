@@ -27,3 +27,10 @@ To build an interactive and intelligent chatbot that:
 3. **Streamlit Interface**:
    - Users ask questions through a web UI
    - The model responds with generated answers based on data context
+---
+
+## Example Questions:
+-	What features impact loan approval the most?
+-	How many applicants were married?
+-	Do self-employed people get loans approved?
+-	What is the average loan amount?
