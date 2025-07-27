@@ -27,6 +27,12 @@ To build an interactive and intelligent chatbot that:
 3. **Streamlit Interface**:
    - Users ask questions through a web UI
    - The model responds with generated answers based on data context
+
+---
+## Screenshot
+
+[Have a look](https://github.com/ananyasaini64760/rag_loan_chatbot/blob/main/RAG%20Loan%20Chatbot.png)
+
 ---
 
 ## Example Questions:
