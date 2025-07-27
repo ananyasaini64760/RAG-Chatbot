@@ -1,13 +1,15 @@
+import pandas as pd
 import faiss
-import pickle
-import numpy as np
 from sentence_transformers import SentenceTransformer
+import numpy as np
 
-# Load precomputed data
 model = SentenceTransformer("all-MiniLM-L6-v2")
-index = faiss.read_index("model/faiss_index.bin")
-with open("model/docs.pkl", "rb") as f:
-    docs = pickle.load(f)
+df = pd.read_csv("data/loan_data.csv")
+docs = df.apply(lambda row: " ".join([f"{col}: {row[col]}" for col in df.columns]), axis=1).tolist()
+embeddings = model.encode(docs)
+index = faiss.IndexFlatL2(embeddings[0].shape[0])
+index.add(np.array(embeddings))
+
 
 def retrieve_context(query, top_k=3):
     query_embedding = model.encode([query])
