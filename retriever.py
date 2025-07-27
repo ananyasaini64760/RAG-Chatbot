@@ -1,23 +1,15 @@
-# build_index.py
-import pandas as pd
 import faiss
-import numpy as np
 import pickle
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
-# Load and prepare data
-df = pd.read_csv("data/loan_data.csv")
-docs = df.apply(lambda row: " ".join([f"{col}: {row[col]}" for col in df.columns]), axis=1).tolist()
-
-# Embed using sentence-transformers
+# Load precomputed data
 model = SentenceTransformer("all-MiniLM-L6-v2")
-embeddings = model.encode(docs)
+index = faiss.read_index("model/faiss_index.bin")
+with open("model/docs.pkl", "rb") as f:
+    docs = pickle.load(f)
 
-# Create FAISS index
-index = faiss.IndexFlatL2(embeddings[0].shape[0])
-index.add(np.array(embeddings))
-
-# Save everything
-faiss.write_index(index, "model/faiss_index.bin")
-with open("model/docs.pkl", "wb") as f:
-    pickle.dump(docs, f)
+def retrieve_context(query, top_k=3):
+    query_embedding = model.encode([query])
+    _, indices = index.search(np.array(query_embedding), top_k)
+    return [docs[i] for i in indices[0]]
