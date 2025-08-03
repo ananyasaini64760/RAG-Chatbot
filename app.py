@@ -4,7 +4,7 @@ from utils import load_chunks, build_index, retrieve, generate_response
 st.set_page_config(page_title="Loan RAG Chatbot", layout="wide")
 st.title("📊 Loan Approval RAG Chatbot")
 
-csv_path = "data/Training Dataset.csv"
+csv_path = "data/loan_data.csv"
 
 @st.cache_resource
 def setup():
