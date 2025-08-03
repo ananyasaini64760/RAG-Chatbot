@@ -31,7 +31,7 @@ To build an interactive and intelligent chatbot that:
 ---
 ## Screenshot
 
-[Have a look](https://github.com/ananyasaini64760/rag_loan_chatbot/blob/main/RAG%20Loan%20Chatbot.png)
+[Have a look](https://github.com/ananyasaini64760/rag_loan_chatbot/blob/main/ScreenShot.png)
 
 ---
 
